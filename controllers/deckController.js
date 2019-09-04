@@ -1,6 +1,6 @@
 const db = require('../models');
 
-const show = (req, res) => {
+const showDeck = (req, res) => {
     db.Deck.findById(req.params.id, (err, foundDeck) => {
         if (err) return res.status(400).json({
             status: 400,
@@ -13,8 +13,8 @@ const show = (req, res) => {
     });
 };;
 
-const index = (req, res) => {
-    db.Deck.findById(req.session.currentUser, (err, foundDecks) => {
+const indexDeck = (req, res) => {
+    db.Deck.find(req.session.currentUser, (err, foundDecks) => {
         if (err) return res.status(400).json({
             status: 400,
             message: "Something went wrong, please try again."
@@ -26,8 +26,8 @@ const index = (req, res) => {
     });
 };
 
-const create = (req, res) => {
-    db.Deck.create(req.session.currentUser, (err, createdDeck) => {
+const createDeck = (req, res) => {
+    db.Deck.create(req.body, (err, createdDeck) => {
         if (err) return res.status(500).json({
             status: 500,
             message: "Something went wrong, please try again."
@@ -40,7 +40,7 @@ const create = (req, res) => {
     });
 };
 
-const edit = (req, res) => {
+const editDeck = (req, res) => {
     db.Deck.findByIdAndUpdate(req.params.id, (err, updatedDeck) => {
         if (err) return res.status(500).json({
             status: 500,
@@ -67,10 +67,84 @@ const deleteDeck = (req, res) => {
     });
 };
 
+const showCard = (req, res) => {
+    db.Card.findById(req.params.id, ( err, foundCard ) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again."
+        });
+        res.status(200).json({
+            status: 200,
+            data: foundCard,
+            message: `${res}`
+        });
+    });
+};
+
+const indexCard = (req, res) => {
+    db.Card.find({}, ( err, foundCards ) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again."
+        });
+        res.status(200).json({
+            status: 200,
+            data: foundCards,
+            message: `${res}`
+        });
+    });
+};
+
+const createCard = (req, res) => {
+    db.Card.create(req.body, ( err, createdCard ) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again."
+        });
+        res.status(201).json({
+            status: 201,
+            data: createdCard,
+            message: "Card successfully created."
+        });
+    });
+};
+
+const editCard = (req, res) => {
+    db.Card.findByIdAndUpdate( req.params.id, ( err, updatedCard ) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again."
+        });
+        res.status(202).json({
+            status: 202,
+            data: updatedCard,
+            message: "Card successfully editted."
+        })
+    })
+}
+
+const deleteCard = (req, res) => {
+    db.Card.findByIdAndDelete( req.params.id, ( err, deletedCard ) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again"
+        });
+        res.status(200).json({
+            status: 200,
+            message: "Card successfully deleted"
+        });
+    });
+};
+
 module.exports ={ 
-    show,
-    index,
-    create,
-    edit,
-    deleteDeck
+    showDeck,
+    indexDeck,
+    createDeck,
+    editDeck,
+    deleteDeck,
+    showCard,
+    indexCard,
+    createCard,
+    editCard,
+    deleteCard
 }

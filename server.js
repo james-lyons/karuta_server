@@ -11,7 +11,7 @@ app.use(bodyParser.urlencoded({
     extended: false}));
     app.use(bodyParser.json());
 
-// Custom Loggger Middleware
+// Custom Logger Middleware
 app.use((req, res, next) => {
     const url = req.url;
     const method = req.method;
@@ -48,10 +48,7 @@ app.use('/auth', routes.auth);
 app.use('/user', routes.user);
 
 // Deck Routes
-// app.use('/deck', routes.deck);
-
-// Card Routes
-// app.use('/card', routes.card);
+app.use('/deck', routes.deck);
 
 // Start Server
 app.listen(PORT, () => console.log(`Server running at https:localhost:${PORT}`));
