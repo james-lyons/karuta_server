@@ -12,26 +12,70 @@ const register = (req, res) => {
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
         if (err) return res.status(500).json({
             status: 500,
-            message: "Something went wrong, please try again..."
+            message: "Something went wrong, please try again."
         });
     
         if (foundUser) return res.status(400).json({
             status: 400,
-            message: "Email has already been registered, please try again"
+            message: "Email or username has already been registered."
         });
-  
-      // generate salt and asynchronous callback version
+
+        db.User.findOne({ username: req.body.username }), (err, foundUser) => {
+            if (err) return res.status(500).json({
+                status: 500,
+                message: "Something went wrong, please try again."
+            });
+
+            if (foundUser) return res.status(400).json({
+                status: 400,
+                message: "Email or username has already been registered."
+            })
+            // generate salt and asynchronous callback version
+            bcrypt.genSalt(10, (err, salt) => {
+                  if (err) return res.status(500).json({
+                      status: 500,
+                      message: "something went wrong, please try again."
+                  });
+    
+            // hash user password
+                bcrypt.hash(req.body.password, salt, (err, hash) => {
+                    if (err) return res.status(500).json({
+                        status: 500,
+                        message: "Something went wrong, please try again."
+                    });
+        
+                    const newUser = {
+                        username: req.body.username,
+                        email: req.body.email,
+                        password: hash,
+                        password2: hash,
+                    };
+            
+                    db.User.create(newUser, (err, savedUser) => {
+                        if (err) return res.status(500).json({
+                            status: 500,
+                            message: err
+                        });
+                        res.status(201).json({
+                            status: 201,
+                            message: 'Success'
+                        });
+                    });
+                });
+            });
+        };
+        // generate salt and asynchronous callback version
         bcrypt.genSalt(10, (err, salt) => {
             if (err) return res.status(500).json({
                 status: 500,
-                message: "something went wrong, please try again..."
+                message: "something went wrong, please try again."
             });
-  
+
         // hash user password
             bcrypt.hash(req.body.password, salt, (err, hash) => {
                 if (err) return res.status(500).json({
                     status: 500,
-                    message: "Something went wrong, please try again..."
+                    message: "Something went wrong, please try again."
                 });
     
                 const newUser = {
@@ -48,7 +92,7 @@ const register = (req, res) => {
                     });
                     res.status(201).json({
                         status: 201,
-                        message: 'success'
+                        message: 'Success'
                     });
                 });
             });
@@ -60,25 +104,25 @@ const login = (req, res) => {
     if (!req.body.email || !req.body.password) {
         return res.status(400).json({
             status: 400,
-            message: 'Please enter your email and password'
+            message: 'Please enter your email and password.'
         });
     };
     
     db.User.findOne({ email: req.body.email }, (err, foundUser) => {
         if (err) return res.status(500).json({
             status: 500,
-            message: "something went wrong, please try again..."
+            message: "something went wrong, please try again."
         })
     
         if (!foundUser) return res.status(400).json({
             status: 400,
-            message: "email or password is incorrect"
+            message: "Email or password is incorrect."
         });
     
         bcrypt.compare(req.body.password, foundUser.password, (err, isMatch) => {
             if (err) return res.status(500).json({
                 status: 500,
-                message: "Something went wrong, please try again..."
+                message: "Something went wrong, please try again."
             });
         
             if (isMatch) {
@@ -91,7 +135,7 @@ const login = (req, res) => {
             } else {
                 return res.status(400).json({
                     status: 400,
-                    message: "Username or password is incorect..."
+                    message: "Username or password is incorect."
                 });
             };
         });
@@ -102,7 +146,7 @@ const logout = (req, res) => {
     req.session.destroy(err => {
         if (err) return res.status(500).json({
             status: 500,
-            message: "Something went wrong, please try again..."
+            message: "Something went wrong, please try again."
         });
         res.sendStatus(200);
     });

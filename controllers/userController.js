@@ -26,6 +26,46 @@ const edit = (req, res) => {
     });
 };
 
+const indexCards = (req, res) => {
+    db.User.findById(req.params.id, (err, foundUser) => {
+        if (err) return res.status(500).json({
+            status: 500,
+            message: "Something went wrong, please try again please."
+        });
+    // db.Deck.findById(req.params.deckId, (err, foundDeck) => {
+    //     if (err) return res.status(500).jron({
+    //         status: 500,
+    //         message: "Something went wrong, please try again."
+    //     })
+    
+        console.log(foundUser)
+
+        function findDeckId(deck) {
+            return deck._id == req.params.deckId
+        };
+        const foundDeck = foundUser.decks.find(findDeckId);
+        console.log(foundDeck);
+
+        res.status(200).json({
+            status: 200,
+            data: foundDeck.cards 
+        })
+
+    
+        // db.Card.find({}, ( err, foundCards ) => {
+        //     if (err) return res.status(500).json({
+        //         status: 500,
+        //         message: "Something went wrong, please try again."
+        //     });
+        //     res.status(200).json({
+        //         status: 200,
+        //         data: foundCards,
+        //         message: `${res}`
+        //     });
+    //     });
+    });
+};
+
 // const showDeck = (req, res) => {
 //     db.Deck.findById(req.params.id, ( err, foundDeck ) => {
 //         if (err) return res.status(400).json({
@@ -165,6 +205,7 @@ const edit = (req, res) => {
 module.exports = {
     show,
     edit,
+    indexCards
     // showDeck,
     // indexDeck,
     // createDeck,

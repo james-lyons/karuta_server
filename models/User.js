@@ -6,20 +6,20 @@ const userSchema = new Schema({
     username: {
         type: String,
         required: true,
-        unique: true
+        unique: [true, "Username or email has already been registered."]
+    },
+    email: {
+        type: String,
+        required: true,
+        unique: [true, "Username or email has already been registered."]
+    },
+    password: {
+        type: String,
+        required: true
     },
     profile_image: {
         type: String,
-        default: 'https://www.cmcaindia.org/wp-content/uploads/2015/11/default-profile-picture-gmail-2.png'
-    },
-    email: {
-        required: true,
-        unique: true,
-        type: String
-    },
-    password: {
-        required: true,
-        type: String
+        default: 'https://www.pinclipart.com/picdir/big/97-977420_png-black-and-white-icon-free-download-png.png'
     },
     decks: [Deck.schema],
     signup_date: {
