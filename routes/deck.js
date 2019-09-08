@@ -12,7 +12,7 @@ router.delete('/:deckId', authRequired, ctrl.deck.deleteDeck);
 
 // Card Routes
 router.get('/:deckId/card/:cardId', authRequired, ctrl.deck.showCard);
-// router.get('/:deckId/card', authRequired, ctrl.deck.indexCards);
+router.get('/:deckId/card', authRequired, ctrl.deck.indexCards);
 router.post('/:deckId/card', ctrl.deck.createCard);
 router.put('/:deckId/card/:cardId', authRequired, ctrl.deck.editCard);
 router.delete('/:deckId/card/:cardId', authRequired, ctrl.deck.deleteCard);
