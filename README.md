@@ -12,6 +12,9 @@
 - Node: Server enviornment
 - Express: Server Framework
 - React: Frontend 'framework'
+- Semantic UI
+- Github / Git
+- Heroku
 
 ## Wireframes
 ![ERD](./wireframes/ERD.png)
@@ -34,6 +37,28 @@
 ## Code snippits I'm proud of
 - ![]()
 
+```javascript
+
+showProfileEditButton = () => {
+
+state = {
+    user: [],
+    edit_username: "",
+    edit_email: "",
+    edit_profile_image: "",
+    profile_edit_display: "none",
+}
+
+showProfileEditButton = () => {
+    this.state.profile_edit_display === "none" ?
+    this.setState({ profile_edit_display: '' }) :
+    this.setState({ profile_edit_display:'none' })
+};
+
+style={{ visibility: card.visibility }}>
+
+```
+
 ## Shout-outs
-- Kenny, Dalton, and Matt. I could not have finished this project without them
+- Kenny, Dalton, and Matt. I could not have finished this project without them!!!
 - George Strait and Johnny Cash for keeping me sane when I sat in my living room for 8 hours straight coding over the weekend (haha...)
