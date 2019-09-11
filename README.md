@@ -35,7 +35,6 @@
 - Doing everything I possibly could using recursion
 
 ## Code snippits I'm proud of
-- ![]()
 
 ```javascript
 
