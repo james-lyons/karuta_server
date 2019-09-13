@@ -35,12 +35,6 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", "https://karuta-react.herokuapp.com/");
-    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-    next();
-});
-
 // SECTION Routes
 // Get Root
 app.get('/', (req, res) => {
