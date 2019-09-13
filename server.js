@@ -51,4 +51,4 @@ app.use('/user', routes.user);
 app.use('/deck', routes.deck);
 
 // Start Server
-app.listen(PORT, () => console.log(`Server running at https:localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Listening on ${PORT}`));
