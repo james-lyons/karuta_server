@@ -35,6 +35,7 @@ app.use(session({
 
 const corsOptions = {
     origin: ['https://karuta-react.herokuapp.com/'],
+    origin: true,
     credentials: true,
     optionsSuccessStatus: 200
 };
