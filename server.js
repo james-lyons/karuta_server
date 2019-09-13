@@ -28,7 +28,7 @@ app.use(session({
 }));
 
 const corsOptions = {
-    origin: ['https://git.heroku.com/karuta-react.git'],
+    origin: ['https://karuta-react.herokuapp.com/'],
     credentials: true,
     optionsSuccessStatus: 200
 };
