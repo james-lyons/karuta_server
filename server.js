@@ -43,6 +43,7 @@ app.get('/', (req, res) => {
 
 // Auth Routes
 app.use('/auth', routes.auth);
+app.options('/auth', cors())
 
 // User Routes
 app.use('/user', routes.user);
