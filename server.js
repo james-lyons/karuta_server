@@ -10,7 +10,7 @@ app.use(function(req, res, next) {
     res.header("Access-Control-Allow-Origin", "https://karuta-react.herokuapp.com/"); 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
-  });
+});
 
 // BodyParser
 app.use(bodyParser.urlencoded({
@@ -34,7 +34,7 @@ app.use(session({
 }));
 
 const corsOptions = {
-    origin: true,
+    origin: 'https://karuta-react.herokuapp.com/',
     credentials: true,
     optionsSuccessStatus: 200
 };
