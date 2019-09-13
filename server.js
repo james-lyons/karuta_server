@@ -35,6 +35,14 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
+app.use(function(req, res, next) {
+    res.setHeader("Access-Control-Allow-Origin", "*");
+    res.setHeader("Access-Control-Allow-Headers", "Access-Control-Allow-Headers, Origin,Accept, X-Requested-With, Content-Type, Access-Control-Request-Method, Access-Control-Request-Headers");
+  res.setHeader("Access-Control-Allow-Credentials", "true");
+    res.setHeader("Access-Control-Allow-Methods", "GET,HEAD,OPTIONS,POST,PUT");
+  next();
+  });
+
 // SECTION Routes
 // Get Root
 app.get('/', (req, res) => {
@@ -43,7 +51,6 @@ app.get('/', (req, res) => {
 
 // Auth Routes
 app.use('/auth', routes.auth);
-app.options('/auth', cors())
 
 // User Routes
 app.use('/user', routes.user);
