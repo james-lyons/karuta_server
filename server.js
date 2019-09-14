@@ -33,11 +33,11 @@ app.use(function(req, res, next) {
     next();
 });
 
-const corsOptions = {
-    origin: ['https://karuta-react.herokuapp.com/'],
-    credentials: true,
-    optionsSuccessStatus: 200
-};
+// const corsOptions = {
+//     origin: ['https://karuta-react.herokuapp.com/'],
+//     credentials: true,
+//     optionsSuccessStatus: 200
+// };
 
 app.use(cors(corsOptions));
 
