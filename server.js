@@ -36,6 +36,8 @@ const corsOptions = {
 };
 
 app.use(cors(corsOptions));
+app.options('https://karuta-react.herokuapp.com/', cors());
+
 
 // SECTION Routes
 // Get Root
