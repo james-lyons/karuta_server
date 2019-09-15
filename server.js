@@ -28,13 +28,13 @@ app.use(session({
 }));
 
 app.use(function(req, res, next) {
-    res.header("Access-Control-Allow-Origin", ["https://karuta-react.herokuapp.com"]); 
+    res.header("Access-Control-Allow-Origin", ["https://karuta-react.herokuapp.com/"]); 
     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
     next();
 });
 
 const corsOptions = {
-    origin: ['https://karuta-react.herokuapp.com'],
+    origin: ['https://karuta-react.herokuapp.com/'],
     methods: ["PUT", "GET","POST","DELETE","OPTIONS"],
     credentials: true,
     optionsSuccessStatus: 200
