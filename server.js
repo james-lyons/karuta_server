@@ -27,18 +27,16 @@ app.use(session({
     saveUninitialized: false
 }));
 
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "https://karuta-react.herokuapp.com/"); 
-//     res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
-//     res.header("Access-Control-Allow-Credentials", true);
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     next();
-// });
+app.use(function(req, res, next) {
+    res.header("Access-Control-Allow-Origin", "https://karuta-react.herokuapp.com/"); 
+    res.header("Access-Control-Allow-Methods", "PUT, GET, POST, DELETE, OPTIONS");
+    res.header("Access-Control-Allow-Credentials", true);
+    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
+    next();
+});
 
 const corsOptions = {
     origin: ["https://karuta-react.herokuapp.com/", "https://karuta-react.herokuapp.com"],
-    methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
-    headers: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
     credentials: true,
     optionsSuccessStatus: 200
 };
