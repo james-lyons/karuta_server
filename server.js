@@ -38,6 +38,7 @@ app.use(session({
 const corsOptions = {
     origin: ["https://karuta-react.herokuapp.com/", "https://karuta-react.herokuapp.com"],
     methods: ["GET", "PUT", "POST", "DELETE", "OPTIONS"],
+    headers: ["Origin", "X-Requested-With", "Content-Type", "Accept"],
     credentials: true,
     optionsSuccessStatus: 200
 };
