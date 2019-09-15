@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const DB_URL = process.env.DB_URI || 'mongodb://localhost:27017/karuta_server';
+const DB_URL = process.env.MONGODB_URI || 'mongodb://localhost:27017/karuta_server';
 
 mongoose.connect(DB_URL, {
     useNewUrlParser: true,
